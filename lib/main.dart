@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation/Screens/page1.dart';
 import 'package:splashscreen/splashscreen.dart';
-//d
+
 
 void main() => runApp(MyApp());
 
