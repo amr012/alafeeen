@@ -87,7 +87,6 @@ class Regester extends StatelessWidget {
               child: TextField(
                 keyboardType: TextInputType.numberWithOptions(decimal: true),
                 maxLength: 11,
-
                 onChanged: (phonee){
                 phone=phonee;
               },
@@ -102,10 +101,9 @@ class Regester extends StatelessWidget {
             ),
             Padding(padding: EdgeInsets.only(bottom: 30),
               child: TextField(
-
+                obscureText: true,
                 onChanged: (pass){
                 username=pass;
-
               },
                 decoration: InputDecoration(
                     hintStyle: TextStyle(color: Colors.grey),
@@ -117,9 +115,6 @@ class Regester extends StatelessWidget {
               ),
             )
             ,
-
-
-
             Divider(
               color: Colors.teal.shade100,
             ),
