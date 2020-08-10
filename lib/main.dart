@@ -19,7 +19,7 @@ class _MyAppState extends State<MyApp> {
         home: SplashScreen(
             seconds: 5,
             navigateAfterSeconds: Page1(),
-
+//ssd
             //  imageBackground:AssetImage("images/car1.png") ,
             image: Image.asset(
               "images/car1.png",

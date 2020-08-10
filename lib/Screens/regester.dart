@@ -1,9 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:graduation/components/dropdown.dart';
-import 'package:grouped_buttons/grouped_buttons.dart';
+import 'package:graduation/api/register.dart';
+import 'package:graduation/components/progress-dialog.dart';
+import 'package:graduation/models/registermodel.dart';
+import 'package:form_field_validator/form_field_validator.dart';
+
 
 class Regester extends StatelessWidget {
-  String dropdownValue = 'One';
+  String username;
+  String email;
+  String phone;
+  String password;
+  Address address;
+  String role;
+  int active;
+  bool card;
+  String country;
+  String city;
+  String addressDet;
 
   @override
   Widget build(BuildContext context) {
@@ -27,18 +40,39 @@ class Regester extends StatelessWidget {
               ),
             ),
             Padding(padding: EdgeInsets.only(bottom: 20),
-              child: TextField(
+              child: TextFormField(
+                validator: EmailValidator(errorText: 'enter a valid email address')
+              ,
+                onChanged: (name){
+                  username=name;
+                },
                 decoration: InputDecoration(
                     hintStyle: TextStyle(color: Colors.grey),
                     hintText: 'Name',
-                    icon: Icon(Icons.lock, color: Color(0xff0984E3),
+                    icon: Icon(Icons.perm_identity, color: Color(0xff0984E3),
+                      textDirection: TextDirection.rtl,),
+                    hoverColor: Colors.white70
+                ),
+              ),
+            ),
+            Padding(padding: EdgeInsets.only(bottom: 20),
+              child: TextField(
+                onChanged: (name){
+                  username=name;
+              },
+                decoration: InputDecoration(
+                    hintStyle: TextStyle(color: Colors.grey),
+                    hintText: 'Name',
+                    icon: Icon(Icons.perm_identity, color: Color(0xff0984E3),
                       textDirection: TextDirection.rtl,),
                     hoverColor: Colors.white70
                 ),
               ),
             ),
             Padding(padding: EdgeInsets.only(bottom: 30),
-              child: TextField(
+              child: TextField(onChanged: (mail){
+                email=mail;
+              },
                 decoration: InputDecoration(
                     hintStyle: TextStyle(color: Colors.grey),
                     hintText: 'Email',
@@ -47,8 +81,26 @@ class Regester extends StatelessWidget {
                     hoverColor: Colors.white70
                 ),
               ),
-            ), Padding(padding: EdgeInsets.only(bottom: 30),
+            ),
+            Padding(padding: EdgeInsets.only(bottom: 30),
+              child: TextField(onChanged: (phonee){
+                phone=phonee;
+              },
+                decoration: InputDecoration(
+                    hintStyle: TextStyle(color: Colors.grey),
+                    hintText: 'phone',
+                    icon: Icon(Icons.phone, color: Color(0xff0984E3),
+                      textDirection: TextDirection.rtl,),
+                    hoverColor: Colors.white70
+                ),
+              ),
+            ),
+            Padding(padding: EdgeInsets.only(bottom: 30),
               child: TextField(
+
+                onChanged: (pass){
+                username=pass;
+              },
                 decoration: InputDecoration(
                     hintStyle: TextStyle(color: Colors.grey),
                     hintText: 'Password',
@@ -57,31 +109,10 @@ class Regester extends StatelessWidget {
                     hoverColor: Colors.white70
                 ),
               ),
-            ), Padding(padding: EdgeInsets.only(bottom: 30),
-              child: TextField(
-                decoration: InputDecoration(
-                    hintStyle: TextStyle(color: Colors.grey),
-                    hintText: 'Confirm Password',
-                    icon: Icon(Icons.lock, color: Color(0xff0984E3),
-                      textDirection: TextDirection.rtl,),
-                    hoverColor: Colors.white70
-                ),
-              ),
             )
             ,
 
-            Row(children: <Widget>[
-              Text(" Gender",
-                style: TextStyle(fontSize: 20, color: Colors.white),),
-              RadioButtonGroup(
-                  labelStyle: TextStyle(color: Colors.grey, fontSize: 18),
-                  labels: <String>[
-                    "male   ",
-                    "female",
-                  ],
-                  onSelected: (String selected) => print(selected)
-              ),
-            ]),
+
 
             Divider(
               color: Colors.teal.shade100,
@@ -99,38 +130,97 @@ class Regester extends StatelessWidget {
               ),
             ),
 
-
             Padding(
+              padding: EdgeInsets.all(10),
+              child: TextField(onChanged: (gover){country=gover;},
+                decoration: InputDecoration(
+                    hintStyle:
+                    TextStyle(
 
-                padding: EdgeInsets.only(top: 20, bottom: 30),
-                child: Card(margin: EdgeInsets.all(0),
-                    shape: Border.all(color: Colors.teal.shade100),
-                    color: Color(0xff2C3E50),
-                    child: new Drop()
-                )
+                        color: Colors.grey, fontSize: 20),
+                    hintText: "govern",
+                    hoverColor: Color(0xff2C3E50),
+                    border: OutlineInputBorder(
+                        borderRadius:
+                        BorderRadius.all(Radius.circular(25)))),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: TextField(onChanged: (c){city=c;},
+                decoration: InputDecoration(
+                    hintStyle:
+                    TextStyle(color: Colors.grey, fontSize: 20),
+                    hintText: "city",
+                    hoverColor: Color(0xff2C3E50),
+                    border: OutlineInputBorder(
+                        borderRadius:
+                        BorderRadius.all(Radius.circular(25)))),
+              ),
+            ),Padding(
+              padding: EdgeInsets.all(10),
+              child: TextField(onChanged: (loca){addressDet=loca;},
+                decoration: InputDecoration(
+                    hintStyle:
+                    TextStyle(color: Colors.grey, fontSize: 20),
+                    hintText: "detailed location",
+                    hoverColor: Color(0xff2C3E50),
+                    border: OutlineInputBorder(
+                        borderRadius:
+                        BorderRadius.all(Radius.circular(25)))),
+              ),
+            ),
+    SizedBox(height: 20),
+
+            Card(
+              color: Color(0xff3498DB),
+              margin: EdgeInsets.all(15),
+              shape: RoundedRectangleBorder(
+                  borderRadius:
+                  BorderRadius.all(Radius.circular(50))),
+              child: RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50)
+                ),
+    onPressed:  ()async  {try{
+
+
+/*
+                  RegisterModel body =new RegisterModel();
+                  Address a=new Address();
+                  body.phone=phone;
+                  body.email=email;
+                  body.username=username;
+                  body.password=password;
+                  body.role="ROLE_USER";
+                  body.active=1;
+                  body.card= false;
+               a.city=city;
+              a.country=country;
+               a.addressDet=addressDet;
+                  print("sfsd");
+                  print(a.city);*/
+
+              await   StudentRegisterApi();
+                }catch(e){print(e);}
+                },
+                child: Text(
+                  "Sign Up",
+                  style: TextStyle(color: Colors.white, fontSize: 25),
+                ),
+                color: Colors.blue,
+                padding: EdgeInsets.only(
+                    bottom: 15, top: 15, right: 100, left: 100),
+              ),
             ),
 
 
-            Padding(
 
-                padding: EdgeInsets.only(top: 20, bottom: 30),
-                child: Card(margin: EdgeInsets.all(0),
-                    shape: Border.all(color: Colors.teal.shade100),
-                    color: Color(0xff2C3E50),
-                    child: new Drop())
-            )
-            ,
 
-            Padding(
 
-                padding: EdgeInsets.only(top: 20, bottom: 30),
-                child: Card(margin: EdgeInsets.all(0),
-                    shape: Border.all(color: Colors.teal.shade100),
-                    color: Color(0xff2C3E50),
-                    child: new Drop())
-            )
 
-          ],
+
+          ]
 
         ),
       ),
@@ -139,6 +229,5 @@ class Regester extends StatelessWidget {
     );
   }
 
-  List<String> gharpya = ["City", "tanta", 'santa', 'kafr elzayat'];
-  List<String> menofya = ["City", "shibin", 'santa', 'kafr elzayat'];
+
 }
