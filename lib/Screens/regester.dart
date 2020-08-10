@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:graduation/api/register.dart';
 import 'package:graduation/components/progress-dialog.dart';
 import 'package:graduation/models/registermodel.dart';
@@ -83,7 +84,11 @@ class Regester extends StatelessWidget {
               ),
             ),
             Padding(padding: EdgeInsets.only(bottom: 30),
-              child: TextField(onChanged: (phonee){
+              child: TextField(
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
+                maxLength: 11,
+
+                onChanged: (phonee){
                 phone=phonee;
               },
                 decoration: InputDecoration(
@@ -100,6 +105,7 @@ class Regester extends StatelessWidget {
 
                 onChanged: (pass){
                 username=pass;
+
               },
                 decoration: InputDecoration(
                     hintStyle: TextStyle(color: Colors.grey),
