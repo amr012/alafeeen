@@ -39,22 +39,7 @@ class Regester extends StatelessWidget {
               ]
               ),
             ),
-            Padding(padding: EdgeInsets.only(bottom: 20),
-              child: TextFormField(
-                validator: EmailValidator(errorText: 'enter a valid email address')
-              ,
-                onChanged: (name){
-                  username=name;
-                },
-                decoration: InputDecoration(
-                    hintStyle: TextStyle(color: Colors.grey),
-                    hintText: 'Name',
-                    icon: Icon(Icons.perm_identity, color: Color(0xff0984E3),
-                      textDirection: TextDirection.rtl,),
-                    hoverColor: Colors.white70
-                ),
-              ),
-            ),
+
             Padding(padding: EdgeInsets.only(bottom: 20),
               child: TextField(
                 onChanged: (name){
@@ -201,7 +186,7 @@ class Regester extends StatelessWidget {
                   print("sfsd");
                   print(a.city);*/
 
-              await   StudentRegisterApi();
+              await   StudentRegisterApi(context,username,email,phone,password,country,city,addressDet);
                 }catch(e){print(e);}
                 },
                 child: Text(
