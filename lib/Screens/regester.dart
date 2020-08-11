@@ -28,7 +28,6 @@ class Regester extends StatelessWidget {
           padding: EdgeInsets.only(left: 25, right: 25, top: 80),
           children: <Widget>[
             Image(image: AssetImage("images/car1.png"),),
-
             Padding(
               padding: EdgeInsets.only(top: 20, bottom: 30),
               child: Row(children: <Widget>[
@@ -40,13 +39,12 @@ class Regester extends StatelessWidget {
               ]
               ),
             ),
-
             Padding(padding: EdgeInsets.only(bottom: 20),
               child: TextFormField(
-              controller:   TextEditingController(),
+                validator: EmailValidator(errorText: 'enter a valid email address')
+              ,
                 onChanged: (name){
                   username=name;
-
                 },
                 decoration: InputDecoration(
                     hintStyle: TextStyle(color: Colors.grey),
@@ -57,11 +55,22 @@ class Regester extends StatelessWidget {
                 ),
               ),
             ),
-
-
+            Padding(padding: EdgeInsets.only(bottom: 20),
+              child: TextField(
+                onChanged: (name){
+                  username=name;
+              },
+                decoration: InputDecoration(
+                    hintStyle: TextStyle(color: Colors.grey),
+                    hintText: 'Name',
+                    icon: Icon(Icons.perm_identity, color: Color(0xff0984E3),
+                      textDirection: TextDirection.rtl,),
+                    hoverColor: Colors.white70
+                ),
+              ),
+            ),
             Padding(padding: EdgeInsets.only(bottom: 30),
-              child: TextFormField(
-                controller:   TextEditingController(),onChanged: (mail){
+              child: TextField(onChanged: (mail){
                 email=mail;
               },
                 decoration: InputDecoration(
@@ -74,9 +83,7 @@ class Regester extends StatelessWidget {
               ),
             ),
             Padding(padding: EdgeInsets.only(bottom: 30),
-              child: TextFormField(
-                controller:   TextEditingController(),
-                onChanged: (phonee){
+              child: TextField(onChanged: (phonee){
                 phone=phonee;
               },
                 decoration: InputDecoration(
@@ -89,12 +96,10 @@ class Regester extends StatelessWidget {
               ),
             ),
             Padding(padding: EdgeInsets.only(bottom: 30),
-              child: TextFormField(
-                controller:   TextEditingController(),
-
+              child: TextField(
 
                 onChanged: (pass){
-                password=pass;
+                username=pass;
               },
                 decoration: InputDecoration(
                     hintStyle: TextStyle(color: Colors.grey),
@@ -196,7 +201,7 @@ class Regester extends StatelessWidget {
                   print("sfsd");
                   print(a.city);*/
 
-              await   StudentRegisterApi(context,username,email,phone,password,country,city,addressDet);
+              await   StudentRegisterApi();
                 }catch(e){print(e);}
                 },
                 child: Text(

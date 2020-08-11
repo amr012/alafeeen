@@ -192,7 +192,7 @@ class _Drawer1State extends State<Drawer1> {
                     subtitle: Text(
                       "gamal adb elnaser street",
                       style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 15,
                           fontWeight: FontWeight.w400,
                           color: Colors.white),
                     ),
@@ -200,54 +200,75 @@ class _Drawer1State extends State<Drawer1> {
                 ),
                 SizedBox(height: 40),
                 FlatButton(
+                  onPressed: (){
+
+                  },
                   child: ListTile(
                     leading: Icon(
-                      Icons.group,
-                      size: 30,
+                      Icons.people,
+                      size: 25,
                       color: Colors.white,
                     ),
                     title: Text(
-                      "news",
-                      style: TextStyle(color: Colors.white),
+                      "My Clients",
+                      style: TextStyle(color: Colors.white,fontSize: 16),
+                    ),
+                  ),
+                ),
+                FlatButton(
+                  onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>MyMoney()));
+                  },
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.monetization_on,
+                      size: 25,
+                      color: Colors.white,
+                    ),
+                    title: Text(
+                      "My Money",
+                      style: TextStyle(color: Colors.white,fontSize: 16),
+                    ),
+                  ),
+                ),
+                FlatButton(
+                  onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>MyDelivers()));
+                  },
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.border_color,
+                      size: 25,
+                      color: Colors.white,
+                    ),
+                    title: Text(
+                      "My Delivires",
+                      style: TextStyle(color: Colors.white,fontSize: 16),
                     ),
                   ),
                 ),
                 FlatButton(
                   child: ListTile(
                     leading: Icon(
-                      Icons.group,
-                      size: 30,
+                      Icons.live_help,
+                      size: 25,
                       color: Colors.white,
                     ),
                     title: Text(
-                      "news",
-                      style: TextStyle(color: Colors.white),
+                      "About Us",
+                      style: TextStyle(color: Colors.white,fontSize: 16),
                     ),
                   ),
-                ),
-                FlatButton(
+                ),FlatButton(
                   child: ListTile(
                     leading: Icon(
-                      Icons.group,
-                      size: 30,
+                      Icons.exit_to_app,
+                      size: 25,
                       color: Colors.white,
                     ),
                     title: Text(
-                      "news",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
-                FlatButton(
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.group,
-                      size: 30,
-                      color: Colors.white,
-                    ),
-                    title: Text(
-                      "news",
-                      style: TextStyle(color: Colors.white),
+                      "Logout",
+                      style: TextStyle(color: Colors.white,fontSize: 16),
                     ),
                   ),
                 ),
