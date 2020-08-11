@@ -41,7 +41,8 @@ class Regester extends StatelessWidget {
             ),
 
             Padding(padding: EdgeInsets.only(bottom: 20),
-              child: TextField(
+              child: TextFormField(
+                controller:  new TextEditingController(),
                 onChanged: (name){
                   username=name;
               },
@@ -55,7 +56,9 @@ class Regester extends StatelessWidget {
               ),
             ),
             Padding(padding: EdgeInsets.only(bottom: 30),
-              child: TextField(onChanged: (mail){
+              child: TextFormField(
+                controller:  new TextEditingController(),
+                onChanged: (mail){
                 email=mail;
               },
                 decoration: InputDecoration(
@@ -68,7 +71,9 @@ class Regester extends StatelessWidget {
               ),
             ),
             Padding(padding: EdgeInsets.only(bottom: 30),
-              child: TextField(onChanged: (phonee){
+              child: TextFormField(
+                controller:  new TextEditingController(),
+      onChanged: (phonee){
                 phone=phonee;
               },
                 decoration: InputDecoration(
@@ -81,10 +86,11 @@ class Regester extends StatelessWidget {
               ),
             ),
             Padding(padding: EdgeInsets.only(bottom: 30),
-              child: TextField(
+              child: TextFormField(
+                controller:  new TextEditingController(),
 
                 onChanged: (pass){
-                username=pass;
+                password=pass;
               },
                 decoration: InputDecoration(
                     hintStyle: TextStyle(color: Colors.grey),
@@ -117,7 +123,10 @@ class Regester extends StatelessWidget {
 
             Padding(
               padding: EdgeInsets.all(10),
-              child: TextField(onChanged: (gover){country=gover;},
+
+              child: TextFormField(
+                controller:  new TextEditingController(),
+              onChanged: (gover){country=gover;},
                 decoration: InputDecoration(
                     hintStyle:
                     TextStyle(
