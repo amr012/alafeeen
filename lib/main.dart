@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:graduation/Screens/page1.dart';
+
 import 'package:splashscreen/splashscreen.dart';
+
+import 'Screens/page1.dart';
 
 
 void main() => runApp(MyApp());

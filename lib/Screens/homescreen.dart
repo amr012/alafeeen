@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:custom_bottom_navigation_bar/custom_bottom_navigation_bar_item.dart';
 import 'package:custom_bottom_navigation_bar/custom_bottom_navigation_bar.dart';
-import 'package:graduation/Screens/my_deliveres_screen.dart';
-import 'package:graduation/Screens/my_money_screen.dart';
-import 'package:graduation/Screens/order_screen.dart';
+
+import 'my_deliveres_screen.dart';
+import 'my_money_screen.dart';
+import 'order_screen.dart';
+
 
 class HomeScreen extends StatefulWidget {
   @override
