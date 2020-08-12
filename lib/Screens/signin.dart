@@ -1,11 +1,13 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:graduation/api/Signin.dart';
 
 import 'homescreen.dart';
 import 'regester.dart';
 
 class Login extends StatelessWidget {
+  String email,pass;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,7 +27,7 @@ class Login extends StatelessWidget {
                   children: <Widget>[
                     Padding(
                       padding: EdgeInsets.only(bottom: 20),
-                      child: TextField(
+                      child: TextField(onChanged: (y){email=y;},
                         decoration: InputDecoration(
                             hintStyle: TextStyle(color: Colors.grey),
                             hintText: 'E-Mail',
@@ -39,7 +41,8 @@ class Login extends StatelessWidget {
                     ),
                     Padding(
                       padding: EdgeInsets.only(bottom: 20),
-                      child: TextField(
+                      child: TextField(obscureText: true,
+                        onChanged: (x){pass=x;},
                         decoration: InputDecoration(
                             hintStyle: TextStyle(color: Colors.grey),
                             hintText: 'Password',
@@ -70,7 +73,7 @@ class Login extends StatelessWidget {
                           borderRadius: BorderRadius.circular(50)
                         ),
                         onPressed: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>HomeScreen()));
+                           SignIn(context, email, pass);
                         },
                         child: Text(
                           "Login",

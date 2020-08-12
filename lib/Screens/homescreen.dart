@@ -1,6 +1,10 @@
+import 'package:async_loader/async_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:custom_bottom_navigation_bar/custom_bottom_navigation_bar_item.dart';
 import 'package:custom_bottom_navigation_bar/custom_bottom_navigation_bar.dart';
+import 'package:graduation/Common.dart';
+import 'package:graduation/Screens/signin.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'my_deliveres_screen.dart';
 import 'my_money_screen.dart';
@@ -17,46 +21,48 @@ class _MyAppState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-            appBar: AppBar(
+    return MaterialApp(
+      home: SafeArea(
+        child: Scaffold(
+              appBar: AppBar(
+                backgroundColor: Color(0xff2C3E50),
+                elevation: 0.00,
+              ),
+              drawer: Drawer1(),
+
               backgroundColor: Color(0xff2C3E50),
-              elevation: 0.00,
+              body:  PageView(
+                controller: _pageController,
+                children: <Widget>[
+                  MyDelivers()
+                  ,
+                  HomeBody(),
+
+                  MyMoney()
+                ],
+              ),bottomNavigationBar: CustomBottomNavigationBar(
+          items: [
+            CustomBottomNavigationBarItem(
+              icon: Icons.map,
+              title: "My Delivires",
             ),
-            drawer: Drawer1(),
+            CustomBottomNavigationBarItem(
+              icon: Icons.directions_car,
+              title: "Deliver Now",
+            ),
+            CustomBottomNavigationBarItem(
+              icon: Icons.monetization_on,
+              title: "My Money",
+            ),
+          ],
 
-            backgroundColor: Color(0xff2C3E50),
-            body:  PageView(
-              controller: _pageController,
-              children: <Widget>[
-                MyDelivers()
-                ,
-                HomeBody(),
-
-                MyMoney()
-              ],
-            ),bottomNavigationBar: CustomBottomNavigationBar(
-        items: [
-          CustomBottomNavigationBarItem(
-            icon: Icons.map,
-            title: "My Delivires",
-          ),
-          CustomBottomNavigationBarItem(
-            icon: Icons.directions_car,
-            title: "Deliver Now",
-          ),
-          CustomBottomNavigationBarItem(
-            icon: Icons.monetization_on,
-            title: "My Money",
-          ),
-        ],
-
-        onTap: (index) {
-          _pageController.animateToPage(index,
-              curve: Curves.fastLinearToSlowEaseIn,
-              duration: Duration(milliseconds: 600));
-        },
-      ),),
+          onTap: (index) {
+            _pageController.animateToPage(index,
+                curve: Curves.fastLinearToSlowEaseIn,
+                duration: Duration(milliseconds: 600));
+          },
+        ),),
+      ),
     );
 
   }
@@ -162,15 +168,34 @@ class _HomeBodyState extends State<HomeBody> {
 }
 
 
+
+
+
+
 class Drawer1 extends StatefulWidget {
+
+
   @override
   _Drawer1State createState() => _Drawer1State();
 }
 
 class _Drawer1State extends State<Drawer1> {
+
+
+
   @override
   Widget build(BuildContext context) {
-    return Drawer(
+
+    GlobalKey<AsyncLoaderState> asyncloadername =
+    GlobalKey<AsyncLoaderState>();
+    var asyncLoader = AsyncLoader(
+      key: asyncloadername,
+      initState: () async => await Common.getusername(),
+      renderLoad: () => Center(child: new CircularProgressIndicator()),
+      renderError: ([error]) => Text(error),
+      renderSuccess: ({data}) => Text(data),
+    );
+    return  Drawer(
         child: Container(
           color: Color(0xff2C3E50),
           margin: EdgeInsets.only(top: 15),
@@ -185,10 +210,12 @@ class _Drawer1State extends State<Drawer1> {
                       backgroundImage: AssetImage("images/user.png"),
                       backgroundColor: Colors.black,
                     ),
-                    title: Text(
-                      "Amr Elsebaey",
-                      style: TextStyle(fontSize: 20, color: Colors.white),
-                    ),
+                    title:
+                      asyncLoader
+
+
+
+                    ,
                     subtitle: Text(
                       "gamal adb elnaser street",
                       style: TextStyle(
@@ -259,7 +286,16 @@ class _Drawer1State extends State<Drawer1> {
                       style: TextStyle(color: Colors.white,fontSize: 16),
                     ),
                   ),
-                ),FlatButton(
+                ),FlatButton(onPressed: ()async{
+                  SharedPreferences sharedPreferences =
+                  await SharedPreferences.getInstance();
+
+                  sharedPreferences.setString(Common.name,null);
+                  print(sharedPreferences.getString(Common.name));
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (BuildContext context) => Login()));
+
+                },
                   child: ListTile(
                     leading: Icon(
                       Icons.exit_to_app,

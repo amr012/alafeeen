@@ -12,28 +12,20 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../Common.dart';
 
 
-Future<String> StudentRegisterApi(context,String username,String email,String phone,String pass,String country,String city,String adress) async {
-ProgressDialog pr =new ProgressDialog(context);
+Future<String> SignIn(context,String email,String pass) async {
+  ProgressDialog pr =new ProgressDialog(context);
   Map<String,String> headers = {'Content-Type':'application/json','authorization':'Basic c3R1ZHlkb3RlOnN0dWR5ZG90ZTEyMw=='};
-pr.show();
+  pr.show();
   var response = await http.post(
-    "https://alafyn20.herokuapp.com/users/reg",
-    headers: headers,
-    body:jsonEncode( {
+      "https://alafyn20.herokuapp.com/sigin",
+      headers: headers,
+      body:jsonEncode( {
 
-      "username": username,
-      "email": email,
-      "phone": phone,
-      "password":pass ,
-      "address": {
-        "country": country,
-        "city": city,
-        "addressDet": adress
-      },
-      "role": "ROLE_USER",
-      "active": 1,
-      "card": false
-    })
+
+        "username": email,
+
+        "password":pass ,
+      })
   );
 
   if (response.statusCode != 200 ||
@@ -45,35 +37,17 @@ pr.show();
 
   if (response.statusCode == 200) {
     var data = json.decode(response.body);
-    SharedPreferences sharedPreferences =
-    await SharedPreferences.getInstance();
 
-    sharedPreferences.setString(Common.name, data["username"]);
-    print(sharedPreferences.getString(Common.name));
-    sharedPreferences.setString(Common.email, data["email"]);
-    sharedPreferences.setString(Common.phone, data["phone"]);
-    sharedPreferences.setString(Common.addressDet, data["addressDet"]);
 
 
 
     pr.hide();
 
-showDialog(
-    context: context,
-    builder: (context) {
-      return Dialog(
-        shape:
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        elevation: 4,
-        backgroundColor: Colors.transparent,
-        child: ErrorSignUpWidget(
-          errorMessage: "press ok if you want to auto LogIn", onpressed: () {
-            Navigator.pop(context);
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context)=>HomeScreen()));
 
-        },),
-      );
-    } );
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context)=>HomeScreen()));
+
+
+
 
     // If the server did return a 200 CREATED response,
     // then parse the JSON.
@@ -97,7 +71,7 @@ showDialog(
             },),
           );
         } );
-pr.hide();
+    pr.hide();
     throw Exception('Failed to Submit Data444');
   } else {
     pr.hide();
