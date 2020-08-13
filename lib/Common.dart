@@ -15,6 +15,14 @@ static String username ;
        username=name;
     return name;
   }
+  static getadress() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    String aderss =  _prefs.getString(Common.addressDet) ?? '';
+
+    return aderss;
+  }
+
+
 
 
 

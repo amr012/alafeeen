@@ -195,6 +195,25 @@ class _Drawer1State extends State<Drawer1> {
       renderError: ([error]) => Text(error),
       renderSuccess: ({data}) => Text(data),
     );
+
+
+    GlobalKey<AsyncLoaderState> asyncloaderad =
+    GlobalKey<AsyncLoaderState>();
+    var asyncLoaderadress = AsyncLoader(
+      key: asyncloaderad,
+      initState: () async => await Common.getadress(),
+      renderLoad: () => Center(child: new CircularProgressIndicator()),
+      renderError: ([error]) => Text(error),
+      renderSuccess: ({data}) => Text(
+        data,
+        style: TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w400,
+            color: Colors.white),
+      ),
+    );
+
+
     return  Drawer(
         child: Container(
           color: Color(0xff2C3E50),
@@ -216,14 +235,8 @@ class _Drawer1State extends State<Drawer1> {
 
 
                     ,
-                    subtitle: Text(
-                      "gamal adb elnaser street",
-                      style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white),
-                    ),
-                  ),
+                    subtitle:
+                  asyncLoaderadress),
                 ),
                 SizedBox(height: 40),
                 FlatButton(

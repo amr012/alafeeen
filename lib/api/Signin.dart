@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:graduation/Screens/Signup-errordialog.dart';
 import 'package:graduation/Screens/homescreen.dart';
+import 'package:graduation/api/getuser.dart';
 import 'package:graduation/components/progress-dialog.dart';
 import 'package:http/http.dart'as http;
 import 'package:flutter/material.dart';
@@ -39,7 +40,7 @@ Future<String> SignIn(context,String email,String pass) async {
     var data = json.decode(response.body);
 
 
-
+ await GetUser(email);
 
     pr.hide();
 
@@ -85,7 +86,7 @@ Future<String> SignIn(context,String email,String pass) async {
             elevation: 4,
             backgroundColor: Colors.transparent,
             child: ErrorSignUpWidget(
-              errorMessage: "Check connection and try again", onpressed: () {
+              errorMessage: "please check your data and retry", onpressed: () {
               Navigator.pop(context);
 
             },),

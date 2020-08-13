@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:graduation/Screens/homescreen.dart';
 import 'package:graduation/Screens/signin.dart';
+import 'package:graduation/api/getuser.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Common.dart';
@@ -17,11 +18,12 @@ class Splash extends StatelessWidget{
       await SharedPreferences.getInstance();
 
 
-      print(sharedPreferences.getString(Common.name));
+      print(sharedPreferences.getString("ooooooo"));
       if(sharedPreferences.getString(Common.name)==null) {
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (BuildContext context) => Login()));
       }else{
+        GetUser(sharedPreferences.getString(Common.email  ));
         Navigator.pushReplacement(context,
           MaterialPageRoute(builder: (context) {
             return new HomeScreen();

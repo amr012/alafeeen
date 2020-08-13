@@ -10,7 +10,6 @@ class Regester extends StatelessWidget {
   String email;
   String phone;
   String password;
-  Address address;
   String role;
   int active;
   bool card;
