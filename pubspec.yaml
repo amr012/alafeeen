@@ -61,6 +61,8 @@ flutter:
     - images/box.png
     - images/money.png
     - images/user.png
+    - images/prof.png
+    - images/carpic.png
 
   fonts:
    - family: Pacifico

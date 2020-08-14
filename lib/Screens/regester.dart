@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:graduation/api/register.dart';
 import 'package:graduation/components/progress-dialog.dart';
 import 'package:graduation/models/registermodel.dart';
@@ -38,10 +39,24 @@ class Regester extends StatelessWidget {
               ]
               ),
             ),
-
             Padding(padding: EdgeInsets.only(bottom: 20),
               child: TextFormField(
-                controller:  new TextEditingController(),
+                validator: EmailValidator(errorText: 'enter a valid email address')
+              ,
+                onChanged: (name){
+                  username=name;
+                },
+                decoration: InputDecoration(
+                    hintStyle: TextStyle(color: Colors.grey),
+                    hintText: 'Name',
+                    icon: Icon(Icons.perm_identity, color: Color(0xff0984E3),
+                      textDirection: TextDirection.rtl,),
+                    hoverColor: Colors.white70
+                ),
+              ),
+            ),
+            Padding(padding: EdgeInsets.only(bottom: 20),
+              child: TextField(
                 onChanged: (name){
                   username=name;
               },
@@ -55,9 +70,7 @@ class Regester extends StatelessWidget {
               ),
             ),
             Padding(padding: EdgeInsets.only(bottom: 30),
-              child: TextFormField(
-                controller:  new TextEditingController(),
-                onChanged: (mail){
+              child: TextField(onChanged: (mail){
                 email=mail;
               },
                 decoration: InputDecoration(
@@ -70,9 +83,10 @@ class Regester extends StatelessWidget {
               ),
             ),
             Padding(padding: EdgeInsets.only(bottom: 30),
-              child: TextFormField(
-                controller:  new TextEditingController(),
-      onChanged: (phonee){
+              child: TextField(
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
+                maxLength: 11,
+                onChanged: (phonee){
                 phone=phonee;
               },
                 decoration: InputDecoration(
@@ -85,11 +99,10 @@ class Regester extends StatelessWidget {
               ),
             ),
             Padding(padding: EdgeInsets.only(bottom: 30),
-              child: TextFormField(
-                controller:  new TextEditingController(),
-
+              child: TextField(
+                obscureText: true,
                 onChanged: (pass){
-                password=pass;
+                username=pass;
               },
                 decoration: InputDecoration(
                     hintStyle: TextStyle(color: Colors.grey),
@@ -101,9 +114,6 @@ class Regester extends StatelessWidget {
               ),
             )
             ,
-
-
-
             Divider(
               color: Colors.teal.shade100,
             ),
@@ -122,10 +132,7 @@ class Regester extends StatelessWidget {
 
             Padding(
               padding: EdgeInsets.all(10),
-
-              child: TextFormField(
-                controller:  new TextEditingController(),
-              onChanged: (gover){country=gover;},
+              child: TextField(onChanged: (gover){country=gover;},
                 decoration: InputDecoration(
                     hintStyle:
                     TextStyle(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:custom_bottom_navigation_bar/custom_bottom_navigation_bar_item.dart';
 import 'package:custom_bottom_navigation_bar/custom_bottom_navigation_bar.dart';
 import 'package:graduation/Common.dart';
+import 'package:graduation/Screens/profile_screen.dart';
 import 'package:graduation/Screens/signin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -224,7 +225,9 @@ class _Drawer1State extends State<Drawer1> {
                 Container(
                   padding: EdgeInsets.only(top: 25, bottom: 25),
                   color: Color(0xff00B398),
-                  child: ListTile(
+                  child: ListTile(onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>ProfileScreen()));
+                  },
                     leading: CircleAvatar(
                       backgroundImage: AssetImage("images/user.png"),
                       backgroundColor: Colors.black,
