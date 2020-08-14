@@ -63,7 +63,6 @@ class ProfileScreen extends StatelessWidget {
 
 
     return Scaffold(
-      appBar: AppBar(backgroundColor: Color(0xff2C3E50)),
       backgroundColor: Color(0xff2C3E50),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
