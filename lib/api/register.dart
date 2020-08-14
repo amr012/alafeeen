@@ -1,7 +1,4 @@
 import 'dart:convert';
-
-
-
 import 'package:graduation/Screens/Signup-errordialog.dart';
 import 'package:graduation/Screens/homescreen.dart';
 import 'package:graduation/components/progress-dialog.dart';

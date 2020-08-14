@@ -4,6 +4,7 @@ import 'package:custom_bottom_navigation_bar/custom_bottom_navigation_bar_item.d
 import 'package:custom_bottom_navigation_bar/custom_bottom_navigation_bar.dart';
 import 'package:graduation/Common.dart';
 import 'package:graduation/Screens/about_us.dart';
+import 'package:graduation/Screens/contact_us.dart';
 import 'package:graduation/Screens/profile_screen.dart';
 import 'package:graduation/Screens/signin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -24,6 +25,7 @@ class _MyAppState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: SafeArea(
         child: Scaffold(
               appBar: AppBar(
@@ -243,22 +245,7 @@ class _Drawer1State extends State<Drawer1> {
                   asyncLoaderadress),
                 ),
                 SizedBox(height: 40),
-                FlatButton(
-                  onPressed: (){
 
-                  },
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.people,
-                      size: 25,
-                      color: Colors.white,
-                    ),
-                    title: Text(
-                      "My Clients",
-                      style: TextStyle(color: Colors.white,fontSize: 16),
-                    ),
-                  ),
-                ),
                 FlatButton(
                   onPressed: (){
                     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>MyMoney()));
@@ -275,23 +262,22 @@ class _Drawer1State extends State<Drawer1> {
                     ),
                   ),
                 ),
-                FlatButton(
-                  onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>MyDelivers()));
-                  },
+
+                FlatButton(onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>ContactUs()));
+                },
                   child: ListTile(
                     leading: Icon(
-                      Icons.border_color,
+                      Icons.phone_in_talk,
                       size: 25,
                       color: Colors.white,
                     ),
                     title: Text(
-                      "My Delivires",
+                      "Contact Us",
                       style: TextStyle(color: Colors.white,fontSize: 16),
                     ),
                   ),
-                ),
-                FlatButton(onPressed: (){
+                ),FlatButton(onPressed: (){
                   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>AboutUs()));
                 },
                   child: ListTile(
@@ -305,7 +291,8 @@ class _Drawer1State extends State<Drawer1> {
                       style: TextStyle(color: Colors.white,fontSize: 16),
                     ),
                   ),
-                ),FlatButton(onPressed: ()async{
+                ),
+                FlatButton(onPressed: ()async{
                   SharedPreferences sharedPreferences =
                   await SharedPreferences.getInstance();
 

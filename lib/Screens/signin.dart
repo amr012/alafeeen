@@ -28,8 +28,9 @@ class Login extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(bottom: 20),
                       child: TextField(onChanged: (y){email=y;},
+                        style: TextStyle(color: Colors.white,fontSize: 18),
+
                         decoration: InputDecoration(
-                            hintStyle: TextStyle(color: Colors.grey),
                             hintText: 'E-Mail',
                             icon: Icon(
                               Icons.email,

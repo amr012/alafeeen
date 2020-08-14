@@ -21,9 +21,7 @@ class Regester extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return MaterialApp(
-
-      home: Scaffold(backgroundColor: Color(0xff2C3E50),
+    return Scaffold(backgroundColor: Color(0xff2C3E50),
         body: ListView(
           padding: EdgeInsets.only(left: 25, right: 25, top: 80),
           children: <Widget>[
@@ -223,10 +221,7 @@ class Regester extends StatelessWidget {
           ]
 
         ),
-      ),
-
-
-    );
+      );
   }
 
 
