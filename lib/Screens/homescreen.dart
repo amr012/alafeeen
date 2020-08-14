@@ -252,11 +252,26 @@ class _Drawer1State extends State<Drawer1> {
 
                     ,
                     subtitle:
-                  asyncLoaderadress),
+                   asyncLoaderadress),
                 ),
                 SizedBox(height: 40),
 
                 FlatButton(
+                  onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>ProfileScreen()));
+                  },
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.person,
+                      size: 25,
+                      color: Colors.white,
+                    ),
+                    title: Text(
+                      "My Profile",
+                      style: TextStyle(color: Colors.white,fontSize: 16),
+                    ),
+                  ),
+                ),FlatButton(
                   onPressed: (){
                     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>MyMoney()));
                   },
