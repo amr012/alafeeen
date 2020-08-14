@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:custom_bottom_navigation_bar/custom_bottom_navigation_bar_item.dart';
 import 'package:custom_bottom_navigation_bar/custom_bottom_navigation_bar.dart';
 import 'package:graduation/Common.dart';
+import 'package:graduation/Screens/about_us.dart';
 import 'package:graduation/Screens/profile_screen.dart';
 import 'package:graduation/Screens/signin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -290,7 +291,9 @@ class _Drawer1State extends State<Drawer1> {
                     ),
                   ),
                 ),
-                FlatButton(
+                FlatButton(onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>AboutUs()));
+                },
                   child: ListTile(
                     leading: Icon(
                       Icons.live_help,
