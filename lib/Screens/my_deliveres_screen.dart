@@ -123,13 +123,14 @@ class Page3 extends StatelessWidget {
   }
 }class nullorder extends StatelessWidget{
 
-bool x;
+bool x,y;
 OrderModel q;
-nullorder({this.x,this.q});
+
+nullorder({this.x,this.q,this.y});
 
   @override
   Widget build(BuildContext context) {
-    if(this.x==false){
+    if(this.x==false && this.y==true){
       return
         Container(padding: EdgeInsets.all(5),
           height: 100,
@@ -147,6 +148,10 @@ nullorder({this.x,this.q});
 
         );
   }else return SizedBox(height: .001,);}}
+
+
+
+
 class Order extends StatelessWidget{
 
   final OrderModel q;
@@ -168,6 +173,7 @@ class Order extends StatelessWidget{
         Text("Reciver name : ${q.clientName}",style: TextStyle(fontSize: 18),),
          Text("phine : ${q.mobile}",style: TextStyle(fontSize: 18),),
          Text("location :  ${q.address.toString()  }",style: TextStyle(fontSize: 18),),]),
+
 
     );
   }
@@ -207,7 +213,7 @@ Widget QuizBuilderwait(List<OrderModel> data) {
              return  Padding(
                padding: const EdgeInsets.all(8.0),
                child: nullorder(
-                 q: data[index],x:data[index].done ,
+                 q: data[index],x:data[index].done ,y: data[index].ok,
                ));
 
 
