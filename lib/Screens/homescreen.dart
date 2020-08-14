@@ -8,11 +8,14 @@ import 'package:graduation/Screens/contact_us.dart';
 import 'package:graduation/Screens/profile_screen.dart';
 import 'package:graduation/Screens/signin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'my_deliveres_screen.dart';
 import 'my_money_screen.dart';
 import 'order_screen.dart';
 
+
+const activecolor = Color(0xffD6E7E4);
+const inactivecolor = Colors.grey;
+enum Gender { deliver , receive}
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -78,6 +81,8 @@ class HomeBody extends StatefulWidget {
 }
 
 class _HomeBodyState extends State<HomeBody> {
+  Gender selectedgender ;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -91,7 +96,7 @@ class _HomeBodyState extends State<HomeBody> {
                 child: GestureDetector(
                   onTap: () {
                     setState(() {
-                      print("Amr");
+                      selectedgender = Gender.receive;
                     });
                   },
                   child: Container(
@@ -99,7 +104,7 @@ class _HomeBodyState extends State<HomeBody> {
                     margin: EdgeInsets.only(
                         top: 30, bottom: 30, right: 30, left: 40),
                     decoration: BoxDecoration(
-                        color: Colors.grey,
+                        color: selectedgender == Gender.receive ? activecolor : inactivecolor,
                         borderRadius: BorderRadius.circular(20.0)),
                     child: Column(
                       children: <Widget>[
@@ -120,13 +125,17 @@ class _HomeBodyState extends State<HomeBody> {
               ),
               Expanded(
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    setState(() {
+                      selectedgender = Gender.deliver;
+                    });
+                  },
                   child: Container(
                       height: 130,
                       margin: EdgeInsets.only(
                           top: 30, bottom: 30, right: 40, left: 30),
                       decoration: BoxDecoration(
-                          color: Colors.grey,
+                          color: selectedgender == Gender.deliver ? activecolor : inactivecolor,
                           borderRadius: BorderRadius.circular(20.0)),
                       child: Column(
                         children: <Widget>[
@@ -163,6 +172,7 @@ class _HomeBodyState extends State<HomeBody> {
               Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>OrderScreen()));
             },
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+              color: Color(0xffD6E7E4),
               child: Text("Order Now",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),),
           ),
         )
