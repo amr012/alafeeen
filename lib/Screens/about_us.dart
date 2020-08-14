@@ -10,15 +10,16 @@ class AboutUs extends StatelessWidget {
         Container(child: Image.asset("images/carpic.png"),),
         Padding(
           padding: const EdgeInsets.all(20.0),
-          child: Text("we are a Group that help you to transport your Furniture to any where you want in Egypt.",
-            style: TextStyle(fontSize: 25, color:Colors.white),),
+          child: Text("were to go \n(the World between your hand)",textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 30, color:Colors.black),),
         ),
-          Text("Our Team",style: TextStyle(fontSize: 25,color: Colors.white),),
+          Text("(Our Team)",style: TextStyle(fontSize: 25,color: Colors.white),),
           SizedBox(height: 10,),
+          Text("Osman Ahmed Abdelmoneam",style: TextStyle(fontSize: 25,color: Colors.white),),
           Text("Amr Mamdouh Nouh",style: TextStyle(fontSize: 25,color: Colors.white),),
           Text("Karim Maged",style: TextStyle(fontSize: 25,color: Colors.white),),
           Text("Amr Khaled Elsebaey",style: TextStyle(fontSize: 25,color: Colors.white),),
-          Text("Osman Ahmed Abdelmoneam",style: TextStyle(fontSize: 25,color: Colors.white),),
+
           Text("Ahmed Zaid",style: TextStyle(fontSize: 25,color: Colors.white),),
 
       ],),

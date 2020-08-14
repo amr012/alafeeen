@@ -41,13 +41,13 @@ var asyncLoader = AsyncLoader(
 
   GlobalKey<AsyncLoaderState> asyncloaderaproove=
   GlobalKey<AsyncLoaderState>();
-  var asyncLoaderaprove = AsyncLoader(
+  var asyncLoaderok = AsyncLoader(
 
     key: asyncloaderaproove,
     initState: () async => await GetOrder(),
     renderLoad: () => Center(child: new CircularProgressIndicator()),
     renderError: ([error]) => Page3(),
-    renderSuccess: ({data})=> QuizBuilderwait(data),
+    renderSuccess: ({data})=> QuizBuilderok(data),
   );
 
 
@@ -62,11 +62,11 @@ var asyncLoader = AsyncLoader(
           backgroundColor: Color(0xff2C3E50),
           bottom: TabBar(tabs: <Widget>[
             Tab(child: Column(children: <Widget>[
-              Text("Recent",style: TextStyle(fontSize: 16),),
+              Text("waiting",style: TextStyle(fontSize: 16),),
               Text("Delivires",style: TextStyle(fontSize: 16)),
             ],),),
             Tab(child: Column(children: <Widget>[
-              Text("Waited",style: TextStyle(fontSize: 16)),
+              Text("accepted",style: TextStyle(fontSize: 16)),
               Text("Delivires",style: TextStyle(fontSize: 16)),
             ],
               
@@ -78,7 +78,7 @@ var asyncLoader = AsyncLoader(
 
           ]),
         ),body: TabBarView(children: <Widget>[
-          asyncLoaderaprove,
+          asyncLoaderok,
           asyncLoaderwait,
           asyncLoader,
         ]),
@@ -148,6 +148,39 @@ nullorder({this.x,this.q,this.y});
 
         );
   }else return SizedBox(height: .001,);}}
+
+
+
+
+class orderok extends StatelessWidget{
+
+  bool x;
+  OrderModel q;
+
+  orderok({this.x,this.q});
+
+  @override
+  Widget build(BuildContext context) {
+    if(this.x==false){
+      return
+        Container(padding: EdgeInsets.all(5),
+          height: 100,
+          decoration: BoxDecoration(
+            color: Colors.white,border: Border.all(color: Colors.black,width: 4),
+
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+
+          child: Column(children: <Widget>[
+            Text("Reciver name : ${q.clientName}",style: TextStyle(fontSize: 18),),
+            Text("phine : ${q.mobile}",style: TextStyle(fontSize: 18),),
+            Text("location :  ${q.address.toString()  }",style: TextStyle(fontSize: 18),),]
+          ),
+
+        );
+    }else return SizedBox(height: .001,);}}
+
+
 
 
 
@@ -226,11 +259,11 @@ Widget QuizBuilderok(List<OrderModel> data) {
       itemCount: data.length,
       shrinkWrap: true,
       itemBuilder: (context, index) {
-        print(data[index].done);
+        print(data[index].ok);
 
         return  Padding(
             padding: const EdgeInsets.all(8.0),
-            child: nullorder(
+            child: orderok(
               q: data[index],x:data[index].ok ,
             ));
 

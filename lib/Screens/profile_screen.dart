@@ -1,6 +1,9 @@
 
 
+import 'package:async_loader/async_loader.dart';
 import 'package:flutter/material.dart';
+
+import '../Common.dart';
 
 class ProfileScreen extends StatelessWidget {
 
@@ -8,7 +11,55 @@ class ProfileScreen extends StatelessWidget {
   @override
 
   Widget build(BuildContext context) {
+    GlobalKey<AsyncLoaderState> asyncloaderadd=
+    GlobalKey<AsyncLoaderState>();
+    var asyncLoaderadress = AsyncLoader(
+      key: asyncloaderadd,
+      initState: () async => await Common.getadress(),
+      renderLoad: () => Center(child: new CircularProgressIndicator()),
+      renderError: ([error]) => Text(error),
+      renderSuccess: ({data}) => Text(
+        data,
+        style: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.w400,
+            color: Colors.blue),
+      ),
+    );
 
+
+    GlobalKey<AsyncLoaderState> asyncloaderphone=
+    GlobalKey<AsyncLoaderState>();
+    var asyncLoaderphone = AsyncLoader(
+      key: asyncloaderphone,
+      initState: () async => await Common.getphone(),
+      renderLoad: () => Center(child: new CircularProgressIndicator()),
+      renderError: ([error]) => Text(error),
+      renderSuccess: ({data}) => Text(
+        data,
+        style: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.w400,
+            color: Colors.blue),
+      ),
+    );
+
+
+    GlobalKey<AsyncLoaderState> asyncloadername=
+    GlobalKey<AsyncLoaderState>();
+    var asyncLoadername = AsyncLoader(
+      key: asyncloadername,
+      initState: () async => await Common.getusermail(),
+      renderLoad: () => Center(child: new CircularProgressIndicator()),
+      renderError: ([error]) => Text(error),
+      renderSuccess: ({data}) => Text(
+        data,
+        style: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.w400,
+            color: Colors.blue),
+      ),
+    );
 
 
     return Scaffold(
@@ -43,11 +94,7 @@ class ProfileScreen extends StatelessWidget {
                   size: 30,
                   color: Colors.blue,
                 ),
-                title: Text(
-                  "+010 25314161",
-                  style: TextStyle(fontSize: 25),
-
-                ),
+                title: asyncLoaderphone
               ),
             ),
           ),
@@ -61,10 +108,7 @@ class ProfileScreen extends StatelessWidget {
                   size: 30,
                   color: Colors.blue,
                 ),
-                title: Text(
-                  "Amrelsebaey@Gmail.com",
-                  style: TextStyle(fontSize: 25),
-                ),
+                title: asyncLoadername
               ),
             ),
           ),
@@ -78,15 +122,17 @@ class ProfileScreen extends StatelessWidget {
                   size: 30,
                   color: Colors.blue,
                 ),
-                title: Text(
-                  "Amrelsebaey@Gmail.com",
-                  style: TextStyle(fontSize: 25),
-                ),
+                title:
+                  asyncLoaderadress,
+
+                
               ),
             ),
           )
         ],
       ),
     );
+
   }
+
 }

@@ -115,8 +115,8 @@ class _HomeBodyState extends State<HomeBody> {
                           height: 20,
                         ),
                         Text(
-                          "Deliver & Recieve",
-                          style: TextStyle(fontSize: 15),
+                          "Deliver & Collection",
+                          style: TextStyle(fontSize: 14),
                         )
                       ],
                     ),
@@ -146,8 +146,8 @@ class _HomeBodyState extends State<HomeBody> {
                             height: 20,
                           ),
                           Text(
-                            "Deliver ",
-                            style: TextStyle(fontSize: 15),
+                            "Deliver",
+                            style: TextStyle(fontSize: 14),
                           )
                         ],
                       )),
@@ -343,7 +343,7 @@ class DropDownCars extends StatefulWidget {
 
 class _DropState extends State<DropDownCars> {
 
-  List<String> Cars =['Car1', 'Car2', 'Car3'];
+  List<String> Cars =['MiniVan', 'PickUp', 'Jumpo',"Closed Body J"];
 
   String dropdownValue ;
   @override
@@ -355,7 +355,7 @@ class _DropState extends State<DropDownCars> {
       hint: Text("Please Select The Veichle",style: TextStyle(color: Colors.white),),
 
 
-      style: TextStyle(fontSize: 28,
+      style: TextStyle(fontSize: 18,
           color: Colors.black
       ),
 

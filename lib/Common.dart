@@ -22,6 +22,18 @@ static String username ;
     return aderss;
   }
 
+  static getphone() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    String phone =  _prefs.getString(Common.phone) ?? '';
+
+    return phone;
+  }
+  static getusermail() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    String phone =  _prefs.getString(Common.email) ?? '';
+
+    return phone;
+  }
 
 
 

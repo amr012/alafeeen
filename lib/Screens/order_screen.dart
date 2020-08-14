@@ -152,7 +152,49 @@ class _MyAppState extends State<OrderScreen> {
                                   borderRadius:
                                   BorderRadius.all(Radius.circular(25)))),
                         ),
+                      ),
+
+                      Row(
+                        children: <Widget>[
+                          Icon(
+                            Icons.perm_identity,
+                            color: Colors.white,
+                            size: 22,
+                          ),
+                          Text(
+                            "Reciver Data",
+                            style:
+                            TextStyle(fontSize: 22, color: Colors.white),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(10),
+                        child: TextField(
+                          decoration: InputDecoration(
+                              hintStyle:
+                              TextStyle(color: Colors.grey, fontSize: 20),
+                              hintText: "Reciver Name",
+                              hoverColor: Color(0xff2C3E50),
+                              border: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.all(Radius.circular(25)))),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(10),
+                        child: TextField(
+                          decoration: InputDecoration(
+                              hintStyle:
+                              TextStyle(color: Colors.grey, fontSize: 20),
+                              hintText: "Reciver Phone",
+                              hoverColor: Color(0xff2C3E50),
+                              border: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.all(Radius.circular(25)))),
+                        ),
                       )
+
                     ],
                   ),
                 ),
