@@ -1,14 +1,6 @@
 import 'dart:convert';
-
-
-
-import 'package:graduation/Screens/Signup-errordialog.dart';
-import 'package:graduation/Screens/homescreen.dart';
-import 'package:graduation/components/progress-dialog.dart';
 import 'package:graduation/models/orderrecive.dart';
-import 'package:graduation/models/registermodel.dart';
 import 'package:http/http.dart'as http;
-import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Common.dart';

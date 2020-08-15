@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class MyMoney extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(elevation: 0,backgroundColor: Color(0xff2C3E50)),
+    return Scaffold(
       backgroundColor: Color(0xff2C3E50),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

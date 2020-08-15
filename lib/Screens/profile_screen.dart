@@ -63,7 +63,6 @@ class ProfileScreen extends StatelessWidget {
 
 
     return Scaffold(
-      appBar: AppBar(backgroundColor: Color(0xff2C3E50)),
       backgroundColor: Color(0xff2C3E50),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -74,10 +73,7 @@ class ProfileScreen extends StatelessWidget {
             radius: 45,
           ),
           SizedBox(height: 15,),
-          Text(
-            "Amr Elsebaey",
-            style: TextStyle(color: Colors.white,fontSize: 25),
-          ),
+           asyncLoadername,
           SizedBox(height: 10,),
           Divider(
             height: 10,
