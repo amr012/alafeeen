@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:graduation/api/GetOrdrs.dart';
 import 'package:graduation/models/orderrecive.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
+import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
 
 
 class OrderScreen extends StatefulWidget {
@@ -14,7 +15,7 @@ class _MyAppState extends State<OrderScreen> {
 
 
 
-  
+  int x = 0 ;
   int _currentStep = 0;
 
   @override
@@ -47,22 +48,66 @@ class _MyAppState extends State<OrderScreen> {
                 title: new Text(''),
                 content: new Theme(
                     data: ThemeData(focusColor: Colors.white),
-                    child: Column(
+                    child:Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Text(
-                          "please choses ay kalam f ay kalam sfsf sfedfdf drfhdh dhdhd dhdhd",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20),
+                        Row(mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            CircleAvatar(
+                              radius: 35,
+                              child: FlatButton(
+                                onPressed: () {
+                                  setState(() {
+                                    x--;
+                                  });
+                                },
+                                child: Icon(Icons.minimize),
+                              ),
+                            ),
+                            SizedBox(width: 40,),
+                            CircleAvatar(radius: 35,
+                              child: FlatButton(
+                                onPressed: () {
+                                  setState(() {
+                                    x++;
+                                  });
+                                },
+                                child: Icon(Icons.add),
+                              ),
+                            ),
+                          ],
                         ),
-                        CheckboxGroup(
-                          labels: ["asas", "asasa", "sdsdsd", "aDASDASD"],
-                          labelStyle: TextStyle(color: Colors.white),
-                        )
+                        SizedBox(height: 20,),
+
+                        Text("The Number Of Cars $x",style: TextStyle(fontSize: 25,color: Colors.white),),
+                        SizedBox(height: 20,),
+
+
+                        RaisedButton(
+                          child: Text("Choose Date",style: TextStyle(fontSize: 25),),
+                          onPressed: () async {
+                            var datePicked = await DatePicker.showSimpleDatePicker(
+                              context,
+                              initialDate: DateTime(1994),
+                              firstDate: DateTime(1960),
+                              lastDate: DateTime(2021),
+                              dateFormat: "dd-MMMM-yyyy",
+                              locale: DateTimePickerLocale.en_us,
+                              looping: true,
+                            );
+
+                            final snackBar =
+                            SnackBar(content: Text("Date Picked $datePicked"));
+                            Scaffold.of(context).showSnackBar(snackBar);
+                          },
+                        ),
+                        SizedBox(height: 20,),
+
+
                       ],
-                    )),
+                    )
+                ),
                 isActive: _currentStep >= 0,
                 state: _currentStep >= 0
                     ? StepState.complete
